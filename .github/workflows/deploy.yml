@@ -29,14 +29,14 @@ jobs:
       - name: Verify Pushed Image
         run: docker pull harpreet78730/week-18-class:0.0.0
 
-    # - name: Deploy to EC2
-    #   uses: appleboy/ssh-action@master
-    #   with:
-    #     host: ${{ secrets.SSH_HOST }}
-    #     username: ${{ secrets.SSH_USERNAME }}
-    #     key: ${{ secrets.SSH_KEY }}
-    #     script: |
-    #       sudo docker pull harpreet78730/week-18-class:0.0.0
-    #       sudo docker stop web-app || true
-    #       sudo docker rm web-app || true
-    #       sudo docker run -d --name web-app -p 3005:3000 harpreet78730/week-18-class:0.0.0
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo docker pull harpreet78730/week-18-class:0.0.0
+            sudo docker stop web-app || true
+            sudo docker rm web-app || true
+            sudo docker run -d --name web-app -p 3005:3000 harpreet78730/week-18-class:0.0.0
